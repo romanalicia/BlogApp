@@ -1,2 +1,30 @@
-<!-- {% extends "template.html" %} {% block title %} Posts {% endblock %} {% block
-content %} -->
+{% extends "template.html" %} {% block title %} Posts {% endblock %} {% block
+content %}
+<h1 align="center">Post</h1>
+<ul class="list-group list-group-flush" id="posts">
+  {% for posts in user.posts %}
+  <div class="card border-dark">
+    <div
+      class="card-header bgcolor d-flex justify-content-between align-items-center"
+    >
+      <div class="card-text">{{ posts.data }}</div>
+      <button type="button" class="close" onClick="deletePost({ posts,id })">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <br />
+  {% endfor %}
+</ul>
+
+<br />
+<form method="POST">
+  <textarea name="posts" id="posts" class="form-control"></textarea>
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Post</button>
+  </div>
+</form>
+<br />
+
+{% endblock %}
