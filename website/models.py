@@ -9,10 +9,10 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(150))
     password = db.Column(db.String(150))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
-    notes = db.relationship('Notes')
+    posts = db.relationship('Posts')
 
 
-class Notes(db.Model):
+class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(10000))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
