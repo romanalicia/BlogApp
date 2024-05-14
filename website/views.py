@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Posts
+from .models import Notes
 from .import db
 import json
 
@@ -13,45 +13,29 @@ def home():
     return render_template("home.html", user=current_user)
 
 
-@views.route("/posts", methods=['GET', 'POST'])
-def posts():
+@views.route("/notes", methods=['GET', 'POST'])
+def notes():
     if request.method == 'POST':
-        posts = request.form.get('posts')  # Gets the post from HTML
-        if len(posts) < 1:
-            flash("Posts is too short!", category='error')
+        notes = request.form.get('notes')  # Gets the post from HTML
+        if len(notes) < 1:
+            flash("Note is too short!", category='error')
         else:
             # providing the schema for the post
-            new_post = Posts(data=posts, user_id=current_user.id)
-            db.session.add(new_post)  # adding the posts to the database
+            new_note = Notes(data=notes, user_id=current_user.id)
+            db.session.add(new_note)  # adding the post to the database
             db.session.commit()
-            flash('Post posted!', category='success')
+            flash('Note added!', category='success')
 
-    return render_template("posts.html", user=current_user)
-
-
-@views.route("/posts", methods=['GET', 'POST'])
-def posts():
-    if request.method == 'POST':
-        posts = request.form.get('posts')  # Gets the post from HTML
-        if len(posts) < 1:
-            flash("Post is too short!", category='error')
-        else:
-            # providing the schema for the post
-            new_post = Posts(data=posts, user_id=current_user.id)
-            db.session.add(new_post)  # adding the post to the database
-            db.session.commit()
-            flash('Post added!', category='success')
-
-    return render_template("posts.html", user=current_user)
+    return render_template("notes.html", user=current_user)
 
 
-@views.route('/delete-posts', methods=['POST'])
-def delete_posts():
-    posts = json.loads(request.data)
-    postsId = posts['postsId']
-    posts = Posts.query.get(postsId)
-    if posts:
-        if posts.user_id == current_user.id:
-            db.session.delete(posts)
+@views.route('/delete-notes', methods=['POST'])
+def delete_notes():
+    notes = json.loads(request.data)
+    notesId = notes['notesId']
+    notes = Notes.query.get(notesId)
+    if notes:
+        if notes.user_id == current_user.id:
+            db.session.delete(notes)
             db.session.commit()
     return jsonify({})
