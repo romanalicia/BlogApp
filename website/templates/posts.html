@@ -1,11 +1,11 @@
 {% extends "template.html" %} {% block title %} Posts {% endblock %} {% block
 content %}
 <h1 align="center">Posts</h1>
-<ul class="list-group list-group-flush" id="posts">
+<ul class="list-group list-group-flush" id="text">
   {% for posts in user.posts %}
   <div class="card border-dark">
     <div class="card-header d-flex justify-content-between align-items-center">
-      <div class="card-text">{{ posts.data }}</div>
+      <div class="card-text">{{ posts.text }}</div>
       <button type="button" class="close" onClick="deletePosts({{ posts.id }})">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -15,18 +15,12 @@ content %}
   {% endfor %}
 </ul>
 <form method="POST">
-  <textarea name="posts" id="posts" class="form-control"></textarea>
+  <textarea name="text" id="text" class="form-control"></textarea>
   <br />
   <div align="center">
     <button type="submit" class="btn btn-primary">Add Post</button>
   </div>
 </form>
 <br />
-<!-- <div align="center">
-  <a href="/">
-    <button type="button" class="btn btn-lg btn-secondary">Back</button>
-  </a>
-</div>
-<br /> -->
 
 {% include "backbutton.html" %} {% endblock %}
