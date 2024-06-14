@@ -1,6 +1,6 @@
-{% extends "template.html" %} {% block title %} Notes {% endblock %} {% block
+{% extends "template.html" %} {% block title %} Posts {% endblock %} {% block
 content %}
-<h1 align="center">Notes</h1>
+<h1 align="center">Posts</h1>
 <ul class="list-group list-group-flush" id="posts">
   {% for posts in user.posts %}
   <div class="card border-dark">
@@ -18,9 +18,15 @@ content %}
   <textarea name="posts" id="posts" class="form-control"></textarea>
   <br />
   <div align="center">
-    <button type="submit" class="btn btn-primary">Add Note</button>
+    <button type="submit" class="btn btn-primary">Add Post</button>
   </div>
 </form>
 <br />
+<!-- <div align="center">
+  <a href="/">
+    <button type="button" class="btn btn-lg btn-secondary">Back</button>
+  </a>
+</div>
+<br /> -->
 
-{% endblock %}
+{% include "backbutton.html" %} {% endblock %}

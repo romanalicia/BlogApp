@@ -6,15 +6,17 @@ from sqlalchemy.sql import func
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
-    first_name = db.Column(db.String(150))
+    username = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    posts = db.relationship('Posts')
+    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+    posts = db.relationship('Posts', backref='user', passive_deletes=True)
 
 
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.Text, nullable=False)
     data = db.Column(db.String(10000))
     password = db.Column(db.String(150))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+    author = db.Column(db.Integer, db.ForeignKey(
+        'user.id', ondelete="CASCADE"), nullable=False)
