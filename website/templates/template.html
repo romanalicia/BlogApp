@@ -9,14 +9,15 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href=https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="static/main.css"> 
+    <script src="https://kit.fontawesome.com/999ca2bb93.js" crossorigin="anonymous"></script>
     <title>{% block title %}  {% endblock %}</title>
   </head>
   <body>
 
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-md nav-bar-red navbar-dark"">
 
         <!-- Brand -->
-        <a class="navbar-brand" href="#">Posts Application</a>
+        <a class="navbar-brand" href="#">Film Reviews</a>
 
         <!-- Toggler/collapsibe Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -92,7 +93,7 @@
 
 <script src=https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-
+<script type="text/javascript" src="{{ url_for('static', filename='index.js')}}"></script>
 
 {% block javascript %}
 

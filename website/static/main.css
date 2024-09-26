@@ -2,3 +2,12 @@
     background-color:lightcyan;
     font-family: 'Comic Sans';
 }
+
+.nav-bar-red {
+    background-color:darkred;
+}
+
+.red-color {
+    background-color:darkred;
+    color:#e4ecee;
+}
